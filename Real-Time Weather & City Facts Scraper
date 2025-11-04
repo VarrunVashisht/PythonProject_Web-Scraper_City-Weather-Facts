@@ -1,0 +1,54 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import time
+
+# List of cities
+cities = ["Melbourne", "London", "New York", "Delhi"]
+
+# Empty LIst to store all data
+data =[]
+
+for city in cities:
+    print(f"🔎 Scraping data for {city}...")
+    # ------------------------
+    # 1️⃣ SCRAPE WEATHER DATA
+    # ------------------------
+    weather_url = f"https://wttr.in/{city}?format=%C+%t"
+    weather_response = requests.get(weather_url)
+
+    if weather_response.status_code ==200:
+        weather_info = weather_response.text.strip()
+    else:
+        weather_info = "N/A"
+
+    # ------------------------
+    # 2️⃣ SCRAPE CITY FACTS FROM WIKIPEDIA
+    # ------------------------
+
+    wiki_url = f"https://en.wikipedia.org/wiki/{city}"
+    wiki_response = requests.get(wiki_url)
+    soup = BeautifulSoup(wiki_response.text, "html.parser")
+
+    # Extract first paragraph
+    first_para = soup.find("p")
+    if first_para is not None:
+        city_fact = first_para.text.strip()
+    else:
+        city_fact = "No info found."
+
+    # Store everything in a list
+    data.append({"city": city,"Weather": weather_info, "fact": city_fact})
+
+# Sleep for a bit (good scraping practice)
+    time.sleep(2)
+
+# ------------------------
+# 3️⃣ CREATE DATAFRAME AND SAVE AS CSV
+# ------------------------
+df= pd.DataFrame(data)
+df.to_csv("City_Weather_facts.csv")
+
+print("\n✅ Data scraping complete!")
+print(df)
+
