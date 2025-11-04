@@ -47,7 +47,6 @@ python scraper.py
 
 
 ## Output:
-
 🔎 Scraping data for London...
 🔎 Scraping data for New York...
 🔎 Scraping data for Tokyo...
@@ -57,11 +56,14 @@ A CSV file named city_weather_facts.csv will be created in your project folder.
 
 ## 📊 Example Output
 City	Weather	Fact
-London	Partly cloudy +13°C	London is the capital and largest city of England and the UK.
-New York	Clear +19°C	New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean.
-Tokyo	Rain +16°C	Tokyo is Japan’s busy capital, blending the ultramodern and traditional.
-Delhi	Sunny +28°C	Delhi is the capital of India, known for its rich history and culture.
-Paris	Cloudy +15°C	Paris, France's capital, is known for art, fashion, gastronomy, and culture.
+| City     | Weather             | Fact                                                                                        |
+| -------- | ------------------- | ------------------------------------------------------------------------------------------- |
+| London   | Partly cloudy +13°C | London is the capital and largest city of England and the UK.                               |
+| New York | Clear +19°C         | New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. |
+| Tokyo    | Rain +16°C          | Tokyo is Japan’s busy capital, blending the ultramodern and traditional.                    |
+| Delhi    | Sunny +28°C         | Delhi is the capital of India, known for its rich history and culture.                      |
+| Paris    | Cloudy +15°C        | Paris, France's capital, is known for art, fashion, gastronomy, and culture.                |
+
 
 All the collected data (city name, weather, and facts) are stored in a Pandas DataFrame.
 Finally, the DataFrame is exported to a CSV file (city_weather_facts.csv).
